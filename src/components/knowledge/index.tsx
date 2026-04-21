@@ -12,7 +12,7 @@ export function ArchBanner() {
       <p className="text-[11px] font-semibold uppercase tracking-widest text-white/60 mb-3">
         Architecture Overview
       </p>
-      <div className="grid grid-cols-4 gap-2.5 mb-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 mb-4">
         {CATEGORIES.map((cat) => (
           <div
             key={cat.key}
@@ -130,7 +130,7 @@ const TAG_CONVENTIONS = [
 
 export function TagTaxonomy() {
   return (
-    <Card className="mb-3.5">
+    <Card className="hidden md:block mb-3.5">
       <div className="flex items-center gap-2 mb-2">
         <TagIcon size={13} className="text-gray-500" />
         <h3 className="text-[13px] font-semibold text-gray-800">

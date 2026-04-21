@@ -1,8 +1,12 @@
-import { Search, ExternalLink } from 'lucide-react'
+import { Search, ExternalLink, Menu } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export function Navbar() {
+interface NavbarProps {
+  onMenuClick?: () => void
+}
+
+export function Navbar({ onMenuClick }: NavbarProps) {
   const [query, setQuery] = useState('')
   const navigate = useNavigate()
 
@@ -13,9 +17,16 @@ export function Navbar() {
   }
 
   return (
-    <header className="h-12 bg-white border-b border-gray-200 flex items-center px-5 gap-3 sticky top-0 z-10 flex-shrink-0">
+    <header className="h-12 bg-white border-b border-gray-200 flex items-center px-4 md:px-5 gap-3 sticky top-0 z-10 flex-shrink-0">
+      <button 
+        onClick={onMenuClick}
+        className="md:hidden p-1.5 text-gray-500 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-100"
+      >
+        <Menu size={18} />
+      </button>
+
       {/* Search */}
-      <div className="relative flex-1 max-w-xs">
+      <div className="relative flex-1 max-w-xs hidden sm:block">
         <Search
           size={13}
           className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400"

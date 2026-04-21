@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { ARTICLES } from '@/data/mock'
 import { Breadcrumb, StatusBadge, Tag, IdBadge } from '@/components/ui/shared'
-import { Clock, User, ArrowLeft, Eye, ThumbsUp } from 'lucide-react'
+import { Clock, User, ArrowLeft, Eye, ThumbsUp, Download, Printer } from 'lucide-react'
 import { RelatedArticles } from '@/components/articles/RelatedArticles'
 
 export function ArticleDetailPage() {
@@ -13,16 +13,52 @@ export function ArticleDetailPage() {
     return <div className="p-8 text-center text-gray-500">Article not found</div>
   }
 
-  return (
-    <div className="max-w-4xl mx-auto p-5 pb-20">
-      <button 
-        onClick={() => navigate(-1)} 
-        className="flex items-center gap-1.5 text-gray-500 hover:text-gray-900 transition-colors mb-5 text-[12px] font-medium"
-      >
-        <ArrowLeft size={14} /> Back
-      </button>
+  const exportMarkdown = () => {
+    if (!article) return
+    const mdContent = `# ${article.title}\n\n**Author:** ${article.author}\n**Updated:** ${article.updatedAt}\n**ID:** ${article.id}\n\n${article.content}`
+    const blob = new Blob([mdContent], { type: 'text/markdown' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${article.id}_${article.title.replace(/\s+/g, '_')}.md`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
 
-      <Breadcrumb items={['KnowledgeBase', article.category, article.title]} />
+  const exportPDF = () => {
+    window.print()
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto p-5 pb-20 print:p-0">
+      <div className="flex items-center justify-between mb-5 print:hidden">
+        <button 
+          onClick={() => navigate(-1)} 
+          className="flex items-center gap-1.5 text-gray-500 hover:text-gray-900 transition-colors text-[12px] font-medium"
+        >
+          <ArrowLeft size={14} /> Back
+        </button>
+        <div className="flex items-center gap-2">
+          <button 
+            onClick={exportMarkdown}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:text-indigo-600 transition-colors"
+          >
+            <Download size={14} /> Markdown
+          </button>
+          <button 
+            onClick={exportPDF}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors"
+          >
+            <Printer size={14} /> PDF
+          </button>
+        </div>
+      </div>
+
+      <div className="print:hidden">
+        <Breadcrumb items={['KnowledgeBase', article.category, article.title]} />
+      </div>
 
       <div className="bg-white rounded-2xl border border-gray-200 p-8 mt-4 shadow-sm">
         <div className="flex items-start justify-between gap-4 mb-4">

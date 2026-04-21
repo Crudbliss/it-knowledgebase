@@ -67,7 +67,7 @@ export function WorkflowStageCards() {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-3 mb-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
       {WORKFLOW_STAGES.map((stage) => (
         <div
           key={stage.name}
@@ -221,7 +221,7 @@ export function CollaborationRoles() {
           Collaboration & Author Roles
         </span>
       </div>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {COLLABORATION_ROLES.map((role) => (
           <div
             key={role.name}

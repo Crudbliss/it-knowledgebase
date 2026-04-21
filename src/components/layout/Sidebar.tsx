@@ -23,7 +23,11 @@ const CATEGORY_ITEMS = [
   { label: 'Troubleshooting', to: '/articles?category=troubleshooting', color: '#FA5252' },
 ]
 
-export function Sidebar() {
+interface SidebarProps {
+  onNavigate?: () => void
+}
+
+export function Sidebar({ onNavigate }: SidebarProps) {
   const location = useLocation()
 
   return (
@@ -60,6 +64,7 @@ export function Sidebar() {
               key={item.to}
               to={item.to}
               end={item.exact}
+              onClick={onNavigate}
               className={({ isActive: active }) =>
                 cn(
                   'flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-[13px] mb-0.5 transition-colors',
@@ -91,6 +96,7 @@ export function Sidebar() {
             <NavLink
               key={item.to}
               to={item.to}
+              onClick={onNavigate}
               className={cn(
                 'flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-[13px] mb-0.5 transition-colors',
                 isActive

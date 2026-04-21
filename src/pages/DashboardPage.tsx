@@ -72,13 +72,13 @@ export function DashboardPage() {
       <MetricCards />
 
       {/* Two Column: Status + Categories */}
-      <div className="grid grid-cols-2 gap-3.5 mb-3.5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
         <StatusOverview />
         <CategoryGrid />
       </div>
 
       {/* Two Column: Recent + Trending */}
-      <div className="grid grid-cols-2 gap-3.5 mb-3.5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
         <RecentArticles />
         <TrendingArticles />
       </div>
