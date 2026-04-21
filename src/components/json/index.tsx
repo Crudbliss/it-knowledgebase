@@ -168,7 +168,7 @@ export function JSONControls({ filter, onFilterChange, articles }: JSONControlsP
   }
 
   return (
-    <div className="flex items-center gap-2 mb-3.5">
+    <div className="flex flex-wrap items-center gap-2 mb-3.5">
       <select
         value={filter}
         onChange={(e) => onFilterChange(e.target.value)}
@@ -224,7 +224,7 @@ export function IntegrationReference() {
       <p className="text-[12px] font-semibold text-white/80 mb-3 flex items-center gap-2">
         <span>⚡</span> System Integration Reference
       </p>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {INTEGRATIONS.map(({ title, subtitle, code, desc }) => (
           <div key={title} className="bg-white/[0.07] rounded-lg p-3">
             <p className="text-[12px] font-semibold text-white mb-1">{title}</p>
