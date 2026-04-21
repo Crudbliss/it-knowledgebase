@@ -20,6 +20,9 @@ export const ARTICLES: Article[] = [
     tags: ['error', 'urgent', 'windows', 'bsod', 'driver'],
     description:
       'A workstation is experiencing random Blue Screen of Death (BSOD) crashes, forcing unexpected reboots and raising potential data loss. BSODs can be triggered by faulty hardware drivers, corrupt system files, failing RAM or storage, overheating, or incompatible Windows updates. Without a structured diagnostic approach, the root cause is...',
+    views: 1205,
+    helpfulCount: 89,
+    content: "## Overview\nThis guide covers common causes for Blue Screen of Death (BSOD) and the steps required to identify and resolve them.\n\n### Step 1: Collect Error Codes\nWhen the BSOD occurs, take note of the stop code (e.g., `IRQL_NOT_LESS_OR_EQUAL` or `CRITICAL_PROCESS_DIED`).\n\n### Step 2: Analyze Minidump Files\nUse WinDbg or BlueScreenView to open the `.dmp` files located in `C:\\Windows\\Minidump`.\n\n### Step 3: Update Drivers\nFaulty drivers are the most common cause. Update display, network, and chipset drivers."
   },
   {
     id: 'KB-006',
@@ -34,6 +37,9 @@ export const ARTICLES: Article[] = [
     tags: ['reset', 'urgent', 'active-directory', 'password', 'security'],
     description:
       'A user is locked out of their Windows account or has forgotten their password and cannot log in to their workstation or access domain resources. Account lockouts typically occur due to incorrect password attempts (e.g., old credentials cached on a phone or other device), and must be resolved by a domain administrator with appropriate Active...',
+    views: 8932,
+    helpfulCount: 412,
+    content: "## Overview\nStandard operating procedure for resetting passwords and unlocking accounts in Active Directory.\n\n### Step 1: Verify User Identity\nAlways verify the identity of the user calling the helpdesk using their employee ID and manager's name.\n\n### Step 2: Open Active Directory Users and Computers (ADUC)\nSearch for the user's SAM account name.\n\n### Step 3: Reset Password\nRight-click the user object -> Reset Password. Ensure 'User must change password at next logon' is checked."
   },
   {
     id: 'KB-001',
@@ -48,6 +54,9 @@ export const ARTICLES: Article[] = [
     tags: ['setup', 'beginner', 'windows', 'dns', 'network'],
     description:
       'After a network infrastructure change, users on Windows 10 machines are experiencing slow or failed domain name resolution. Websites fail to load, and internal resources like shared drives or intranet portals are unreachable. This is typically caused by incorrect or outdated DNS server addresses assigned via DHCP, or by a misconfigured static IP...',
+    views: 342,
+    helpfulCount: 45,
+    content: "## Overview\nGuide for manually overriding or flushing DNS settings on Windows 10.\n\n### Step 1: Open Network Connections\nPress Win + R, type `ncpa.cpl` and press Enter.\n\n### Step 2: Modify IPv4 Properties\nRight-click your active adapter -> Properties -> Select Internet Protocol Version 4 (TCP/IPv4) -> Properties.\n\n### Step 3: Set DNS Servers\nSet Preferred DNS to `8.8.8.8` (or internal DNS IP) and Alternate to `8.8.4.4`."
   },
   {
     id: 'KB-002',
@@ -62,6 +71,9 @@ export const ARTICLES: Article[] = [
     tags: ['error', 'troubleshooting', 'printer', 'network', 'windows'],
     description:
       'Users report that a shared network printer no longer appears in the printer list or fails to print jobs. This commonly occurs after network changes (new switch/VLAN), printer firmware updates, IP address leases expiring, or Windows Update modifying print spooler settings. The printer may be physically online but unreachable from the workstation.',
+    views: 5214,
+    helpfulCount: 310,
+    content: "## Overview\nSteps to resolve common network printer discovery and connection issues.\n\n### Step 1: Ping the Printer\nOpen Command Prompt and ping the printer's static IP address. If it times out, verify the physical network connection.\n\n### Step 2: Restart Print Spooler\nOpen Services (`services.msc`), locate Print Spooler, right-click and Restart.\n\n### Step 3: Re-add the Printer\nGo to Settings -> Devices -> Printers & Scanners. Remove the offline printer and click 'Add a printer or scanner'."
   },
   {
     id: 'KB-005',
@@ -76,6 +88,9 @@ export const ARTICLES: Article[] = [
     tags: ['setup', 'beginner', 'office365', 'licensing', 'windows', 'update'],
     description:
       "A new employee's workstation does not have Microsoft 365 applications installed (Word, Excel, Outlook, Teams, etc.). Without the correct licensed installation, the employee cannot access company emails, documents, or collaboration tools. Manual or incorrect installation can cause activation failures, version mismatches, or licence conflicts with other users.",
+    views: 1045,
+    helpfulCount: 156,
+    content: "## Overview\nInstructions for deploying Microsoft 365 Apps on a new workstation.\n\n### Step 1: Sign in to Office Portal\nNavigate to `portal.office.com` and log in with the user's corporate credentials.\n\n### Step 2: Download Installer\nClick 'Install apps' in the top right corner and select 'Microsoft 365 apps'.\n\n### Step 3: Activation\nOnce installed, open Word and accept the license agreement. The suite will activate automatically using Single Sign-On (SSO)."
   },
   {
     id: 'KB-003',
@@ -90,6 +105,9 @@ export const ARTICLES: Article[] = [
     tags: ['setup', 'vpn', 'windows', 'beginner', 'remote'],
     description:
       "Remote employees and travelling staff need secure, encrypted access to the company's internal network from outside the office. Without a VPN, connections over public Wi-Fi or home networks are unencrypted and expose corporate data to interception. IT must provision and document the VPN setup process for end users with minimal technical...",
+    views: 7421,
+    helpfulCount: 520,
+    content: "## Overview\nConfiguring the built-in Windows 11 VPN client for corporate access.\n\n### Step 1: Open VPN Settings\nGo to Settings -> Network & internet -> VPN. Click 'Add VPN'.\n\n### Step 2: Enter Server Details\nSelect 'Windows (built-in)' as the provider. Enter the connection name (e.g., 'Corporate VPN') and the Server name or address provided by IT.\n\n### Step 3: Connect and Authenticate\nEnter your domain credentials and approve the MFA prompt on your mobile device."
   },
 ]
 

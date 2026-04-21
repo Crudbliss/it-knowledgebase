@@ -12,6 +12,9 @@ export interface Article {
   updatedAt: string
   tags: string[]
   description: string
+  content?: string
+  views?: number
+  helpfulCount?: number
 }
 
 export interface Category {

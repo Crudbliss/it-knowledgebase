@@ -3,6 +3,7 @@ import {
   StatusOverview,
   CategoryGrid,
   RecentArticles,
+  TrendingArticles,
   TagCloud,
 } from '@/components/dashboard'
 import { useNavigate } from 'react-router-dom'
@@ -76,8 +77,11 @@ export function DashboardPage() {
         <CategoryGrid />
       </div>
 
-      {/* Recent Articles */}
-      <RecentArticles />
+      {/* Two Column: Recent + Trending */}
+      <div className="grid grid-cols-2 gap-3.5 mb-3.5">
+        <RecentArticles />
+        <TrendingArticles />
+      </div>
 
       {/* Tag Cloud */}
       <TagCloud />

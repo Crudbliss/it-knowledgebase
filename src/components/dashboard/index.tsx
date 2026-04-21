@@ -171,13 +171,14 @@ export function RecentArticles() {
         {ARTICLES.slice(0, 4).map((article) => (
           <div
             key={article.id}
-            className="flex items-start gap-2.5 py-2.5 first:pt-0 last:pb-0"
+            onClick={() => navigate(`/article/${article.id}`)}
+            className="flex items-start gap-2.5 py-2.5 first:pt-0 last:pb-0 cursor-pointer group"
           >
-            <div className="w-7 h-7 rounded-lg bg-gray-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <FileText size={13} className="text-gray-400" />
+            <div className="w-7 h-7 rounded-lg bg-gray-50 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-indigo-50 transition-colors">
+              <FileText size={13} className="text-gray-400 group-hover:text-indigo-500 transition-colors" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[13px] font-medium text-gray-800 hover:text-indigo-600 cursor-pointer truncate leading-tight">
+              <p className="text-[13px] font-medium text-gray-800 group-hover:text-indigo-600 truncate leading-tight transition-colors">
                 {article.title}
               </p>
               <div className="flex items-center gap-2 mt-0.5 flex-wrap">
@@ -194,6 +195,52 @@ export function RecentArticles() {
               </div>
             </div>
             <StatusBadge status={article.status} />
+          </div>
+        ))}
+      </div>
+    </Card>
+  )
+}
+
+// ─── TrendingArticles ──────────────────────────────────────────────
+export function TrendingArticles() {
+  const navigate = useNavigate()
+  // Sort by views descending
+  const trending = [...ARTICLES].sort((a, b) => (b.views || 0) - (a.views || 0)).slice(0, 4)
+  
+  return (
+    <Card className="mb-3.5">
+      <SectionHeader
+        title="Trending & Most Helpful"
+      />
+      <div className="divide-y divide-gray-50">
+        {trending.map((article) => (
+          <div
+            key={article.id}
+            onClick={() => navigate(`/article/${article.id}`)}
+            className="flex items-start gap-2.5 py-2.5 first:pt-0 last:pb-0 cursor-pointer group"
+          >
+            <div className="w-7 h-7 rounded-lg bg-orange-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-[13px]">🔥</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[13px] font-medium text-gray-800 group-hover:text-indigo-600 truncate leading-tight transition-colors">
+                {article.title}
+              </p>
+              <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+                <span className="text-[11px] text-indigo-600 font-medium">
+                  {article.views?.toLocaleString()} views
+                </span>
+                <span className="text-[11px] text-gray-300">·</span>
+                <span className="text-[11px] text-green-600 font-medium">
+                  {article.helpfulCount} found helpful
+                </span>
+                <span className="text-[11px] text-gray-300">·</span>
+                <span className="text-[11px] text-gray-400">
+                  {article.category}
+                </span>
+              </div>
+            </div>
           </div>
         ))}
       </div>

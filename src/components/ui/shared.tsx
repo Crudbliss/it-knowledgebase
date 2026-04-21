@@ -48,7 +48,7 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
 // ─── Tag ────────────────────────────────────────────────────────
 interface TagProps {
   tag: string
-  onClick?: (tag: string) => void
+  onClick?: (e: React.MouseEvent, tag: string) => void
   className?: string
 }
 
@@ -59,7 +59,7 @@ export function Tag({ tag, onClick, className }: TagProps) {
   }
   return (
     <span
-      onClick={() => onClick?.(tag)}
+      onClick={(e) => onClick?.(e, tag)}
       className={cn(
         'inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium',
         colors.bg,

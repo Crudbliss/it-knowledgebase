@@ -3,6 +3,7 @@ import type { Article } from '@/types'
 import { StatusBadge, Tag, IdBadge } from '@/components/ui/shared'
 import { CATEGORIES } from '@/data/mock'
 import { cn } from '@/lib/utils'
+import { useNavigate } from 'react-router-dom'
 
 interface ArticleCardProps {
   article: Article
@@ -11,14 +12,20 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({ article, onTagClick, className }: ArticleCardProps) {
+  const navigate = useNavigate()
   const catInfo = CATEGORIES.find(
     (c) => c.key === article.category.toLowerCase()
   )
 
+  const handleCardClick = () => {
+    navigate(`/article/${article.id}`)
+  }
+
   return (
     <div
+      onClick={handleCardClick}
       className={cn(
-        'bg-white border border-gray-200 rounded-xl p-4 hover:border-indigo-200 transition-colors group',
+        'bg-white border border-gray-200 rounded-xl p-4 hover:border-indigo-200 hover:shadow-sm transition-all group cursor-pointer',
         className
       )}
     >
@@ -32,7 +39,7 @@ export function ArticleCard({ article, onTagClick, className }: ArticleCardProps
             {catInfo?.icon ?? '📄'}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-[13px] font-medium text-gray-900 group-hover:text-indigo-700 transition-colors cursor-pointer leading-snug">
+            <h3 className="text-[13px] font-medium text-gray-900 group-hover:text-indigo-700 transition-colors leading-snug">
               {article.title}
             </h3>
             <p className="text-[12px] text-gray-500 mt-1 line-clamp-2 leading-relaxed">
@@ -74,7 +81,14 @@ export function ArticleCard({ article, onTagClick, className }: ArticleCardProps
       {/* Tags */}
       <div className="flex gap-1.5 flex-wrap mt-2.5">
         {article.tags.map((tag) => (
-          <Tag key={tag} tag={tag} onClick={onTagClick} />
+          <Tag 
+            key={tag} 
+            tag={tag} 
+            onClick={(e) => {
+              e.stopPropagation(); // prevent card click
+              onTagClick?.(tag)
+            }} 
+          />
         ))}
       </div>
     </div>
