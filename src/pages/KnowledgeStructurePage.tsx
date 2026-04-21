@@ -24,7 +24,7 @@ export function KnowledgeStructurePage() {
       <ArchBanner />
 
       {/* Two-column layout */}
-      <div className="grid grid-cols-[1fr_280px] gap-4">
+      <div className="flex flex-col md:grid md:grid-cols-[1fr_280px] gap-4">
         {/* Left: categories */}
         <div>
           <div className="flex items-center gap-2 mb-3">

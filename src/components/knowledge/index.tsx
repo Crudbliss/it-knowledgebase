@@ -130,7 +130,7 @@ const TAG_CONVENTIONS = [
 
 export function TagTaxonomy() {
   return (
-    <Card className="hidden md:block mb-3.5">
+    <Card className="mb-3.5">
       <div className="flex items-center gap-2 mb-2">
         <TagIcon size={13} className="text-gray-500" />
         <h3 className="text-[13px] font-semibold text-gray-800">
